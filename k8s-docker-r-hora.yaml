@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rserve
+  labels:
+    name: rserve
+spec:
+  type: NodePort
+  ports:
+  - port: 6311
+    name: http
+    nodePort: 31110
+  selector:
+    name: rserve
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rserve
+  labels:
+    name: rserve
+spec:
+  replicas: 1
+  selector:
+    name: rserve
+  template:
+    metadata:
+      labels:
+        name: rserve
+    spec:
+      containers:
+      - name: rserve
+        image: teeratpitakrat/docker-r-hora:latest
+        ports:
+        - containerPort: 6311
