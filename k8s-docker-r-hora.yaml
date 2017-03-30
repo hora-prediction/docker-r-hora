@@ -30,6 +30,6 @@ spec:
     spec:
       containers:
       - name: rserve
-        image: teeratpitakrat/docker-r-hora:latest
+        image: hora/docker-r-hora:latest
         ports:
         - containerPort: 6311
